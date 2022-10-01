@@ -19,8 +19,8 @@ Assuming Quadratic Equation is in Standard Form:
 
 Quadratic Formula:
 
-    answer1 = (-b + sqrt(b^2-4ac) )/2a}
-    answer2 = (-b - sqrt(b^2-4ac) )/2a}
+    answer1 = (-b + sqrt(b^2-4ac) )/2a
+    answer2 = (-b - sqrt(b^2-4ac) )/2a
 
 When the discriminant `(b^2 − 4ac)` is:
 * positive, there are 2 real solutions
