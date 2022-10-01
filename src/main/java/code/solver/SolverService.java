@@ -14,7 +14,7 @@ public class SolverService {
         try {
             List<Integer> coefficients = extractCoefficients(equation);
             List<Double> results = solve(coefficients.get(0), coefficients.get(1), coefficients.get(2));
-            return new SolverResponse(results, equation, "ok");
+            return new SolverResponse(results, equation, "Solved.");
         } catch (SolverException e) {
             return new SolverResponse(new ArrayList<>(), equation, e.getMessage());
         }
