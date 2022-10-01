@@ -68,13 +68,13 @@ public class SolverService {
             throw new SolverException("Not a quadratic equation.");
         }
 
-        double discTemp = b * b - 4 * a * c;
-        if (discTemp < 0) {
+        double discriminant = b * b - 4 * a * c;
+        if (discriminant < 0) {
             throw new SolverException("No real solution.");
         } else {
-            double disc = Math.sqrt(discTemp);
-            result.add((-b - disc) / 2 / a);
-            result.add((-b + disc) / 2 / a);
+            double disc2 = Math.sqrt(discriminant);
+            result.add((-b - disc2) / 2 / a);
+            result.add((-b + disc2) / 2 / a);
             return result;
         }
     }
