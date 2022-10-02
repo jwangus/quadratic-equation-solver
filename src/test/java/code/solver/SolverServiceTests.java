@@ -21,6 +21,13 @@ public class SolverServiceTests {
         assertEquals(result, Arrays.asList(5, -5, 10));
         result = service.extractCoefficients("500x2-1999x+299=0");
         assertEquals(result, Arrays.asList(500, -1999, 299));
+        result = service.extractCoefficients("-5x2 - 3x - 1 = 0");
+        assertEquals(result, Arrays.asList(-5, -3, -1));
+        result = service.extractCoefficients("1x2 + 0x - 4 = 0");
+        assertEquals(result, Arrays.asList(1, 0, -4));
+        result = service.extractCoefficients("1x2 + 0x = 0");
+        assertEquals(result, Arrays.asList(1, 0, 0));
+
     }
 
     @Test

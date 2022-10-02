@@ -1,6 +1,5 @@
 package code.solver;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,42 +19,32 @@ public class SolverService {
         }
     }
 
-    public List<Integer> extractCoefficients(@NotNull String equation) throws SolverException {
-        var eqPattern = Pattern.compile("(?<a>[+-]?\\d*|\\d+)x2(?<b>[+-]?\\d*)x(?<c>[+-]?\\d+|\\d*)=0\\s*");
+    public static String translate(String str) {
+        if (str == null) {
+            return "0";
+        } else if (str.equals("")) {
+            return "1";
+        } else if (str.equals("+")) {
+            return "+1";
+        } else if (str.equals("-")) {
+            return "-1";
+        } else {
+            return str;
+        }
+    }
+    public List<Integer> extractCoefficients(String equation) throws SolverException {
+        var eqPattern = Pattern.compile("([+-]?\\d*|\\d+)x2([+-]?\\d*)x([+-]?\\d+)?=0\\s*");
+
         Matcher matcher = eqPattern.matcher(equation.replace(" ", ""));
         if (matcher.matches()) {
             List<Integer> r = new ArrayList<>();
-            var coeff = matcher.group("a");
-            if (coeff.equals("+") || coeff.isEmpty()) {
-                coeff = "1";
-            } else if (coeff.equals("-")) {
-                coeff = "-1";
+            for (int i=1; i<=3; i++) {
+                try {
+                    r.add(Integer.parseInt(translate(matcher.group(i))));
+                } catch (Exception e) {
+                    throw new SolverException("Not a quadratic equation.");
+                }
             }
-            try {
-                r.add(Integer.parseInt(coeff));
-            } catch (Exception e) {
-                throw new SolverException("Not a quadratic equation.");
-            }
-
-            coeff = matcher.group("b");
-            if (coeff.equals("+")) {
-                coeff = "1";
-            } else if (coeff.equals("-")) {
-                coeff = "-1";
-            }
-            try {
-                r.add(Integer.parseInt(coeff));
-            } catch (Exception e) {
-                throw new SolverException("Not a quadratic equation.");
-            }
-
-            coeff = matcher.group("c");
-            try {
-                r.add(Integer.parseInt(coeff));
-            } catch (Exception e) {
-                throw new SolverException("Not a quadratic equation.");
-            }
-
             return r;
         } else {
             throw new SolverException("Not a quadratic equation.");
