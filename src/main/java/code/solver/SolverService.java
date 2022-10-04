@@ -3,6 +3,7 @@ package code.solver;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,13 +33,17 @@ public class SolverService {
             return str;
         }
     }
-    public List<Integer> extractCoefficients(String equation) throws SolverException {
-        var eqPattern = Pattern.compile("([+-]?\\d*|\\d+)x2([+-]?\\d*)x([+-]?\\d+)?=0\\s*");
 
-        Matcher matcher = eqPattern.matcher(equation.replace(" ", ""));
+    static Pattern EQ_PATTERN = Pattern.compile("([+-]?\\d*)x2(([+-]?\\d*)x)?([+-]?\\d+)?=0");
+    // 1st term (required): group 1 - ([+-]?\\d*)x2
+    // 2nd term (optional): group 2 - (([+-]?\\d*)x)? and group 3 - the inner subgroup ([+-]?\\d*) is for coefficient b
+    // 3rd term (optional): group 4 - ([+-]?\\d+)?
+
+    public List<Integer> extractCoefficients(String equation) throws SolverException {
+        Matcher matcher = EQ_PATTERN.matcher(equation.replaceAll("\\s", ""));
         if (matcher.matches()) {
             List<Integer> r = new ArrayList<>();
-            for (int i=1; i<=3; i++) {
+            for (int i : Arrays.asList(1,3,4)) { // skip group 2.  it's a placeholder
                 try {
                     r.add(Integer.parseInt(translate(matcher.group(i))));
                 } catch (Exception e) {

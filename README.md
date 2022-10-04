@@ -25,7 +25,7 @@ Quadratic Formula:
 When the discriminant `(b^2 − 4ac)` is:
 * positive, there are 2 real solutions
 * zero, there is one real solution
-* negative, there are 2 complex solutions.
+* negative, no real solutions.  We could introduce solutions using complex numbers if time permits.
 
 ## How to use the microservice?
 
@@ -34,4 +34,4 @@ When the discriminant `(b^2 − 4ac)` is:
 `http://localhost:8080/api/v1/quadratic-equation-solver/5x2%2B6x%2B1%3D0`
 3. You'll see the following JSON output:
 `{"answers":[-1.0,-0.2],"equation":"5x2+6x+1=0","description":"Solved."}`
-
+   (We found two answers: -1.0 and -0.2)
