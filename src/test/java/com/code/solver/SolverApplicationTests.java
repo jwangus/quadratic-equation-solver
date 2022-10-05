@@ -1,4 +1,4 @@
-package code.solver;
+package com.code.solver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package code.solver;
+package com.code.solver;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

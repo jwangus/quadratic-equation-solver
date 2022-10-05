@@ -29,9 +29,19 @@ When the discriminant `(b^2 − 4ac)` is:
 
 ## How to use the microservice?
 
-1. Use the command to start the server: `./gradlew bootRun`
-2. Copy and paste the below link to a browser address bar.
-`http://localhost:8080/api/v1/quadratic-equation-solver/5x2%2B6x%2B1%3D0`
-3. You'll see the following JSON output:
+The Solver service supports two interfaces:
+
+**Standard Interface** allows you to pass in the coefficients using URL parameters. e.g.
+`http://localhost:8080/api/v1/quadratic-equation-solver/coefficients?a=1&b=2&c=1`
+
+**String interface** allows you to pass in a string using a path variable. e.g.
+`http://localhost:8080/api/v1/quadratic-equation-solver/text/5x2%2B6x%2B1%3D0`
+
+**Output:** solver service outputs a JSON object with three fields.
+1. answers - list of answers.
+2. equation - the equation passed using string interface.
+3. description - Solved. or an error message indicating something is wrong with the input.
+
+This is a sample output:
 `{"answers":[-1.0,-0.2],"equation":"5x2+6x+1=0","description":"Solved."}`
    (We found two answers: -1.0 and -0.2)

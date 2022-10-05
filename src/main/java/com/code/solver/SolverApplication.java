@@ -1,4 +1,4 @@
-package code.solver;
+package com.code.solver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

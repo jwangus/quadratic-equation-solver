@@ -1,4 +1,4 @@
-package code.solver;
+package com.code.solver;
 
 import org.springframework.stereotype.Service;
 
